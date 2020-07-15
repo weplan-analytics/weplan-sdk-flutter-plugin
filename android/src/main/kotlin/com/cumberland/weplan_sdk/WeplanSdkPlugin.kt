@@ -1,6 +1,9 @@
 package com.cumberland.weplan_sdk
 
+import android.app.Activity
+import android.content.Context
 import androidx.annotation.NonNull;
+import com.cumberland.weplansdk.WeplanSdk
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -8,18 +11,23 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 /** WeplanSdkPlugin */
-public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler {
+public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var context: Context
+  private lateinit var activity: Activity
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "weplan_sdk")
     channel.setMethodCallHandler(this);
+    context = flutterPluginBinding.applicationContext
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -40,14 +48,42 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
+    if (call.method == "enableSdk") {
+      enableSdk(context)
+    }
+    else if (call.method == "disableSdk") {
+      result.notImplemented() // TODO [manu] how to disable?
+    }
+    else {
       result.notImplemented()
     }
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
+  }
+
+  // TODO these are coverage+ IDs, use different? Put in build.config
+  val API_CLIENT_ID = "mLjamj5RzzNeHRMY9jTpstsKduTGiRrY69Wi55yDqwNBHYsPNwGKj3w6HedG1l1NvkuexTNPvT0j52thhtqnU1"
+  val API_CLIENT_SECRET = "Q0IRLVPdunhApbZGqSQBrvmNbCoOucaY7sRuwPuoBHnhFhrvbJoMfWOvqlfBKTCDWtOSGNuurcQVIBWmZBTnzF"
+
+  fun enableSdk(context: Context) {
+    WeplanSdk.withContext(context)
+            .withClientId(API_CLIENT_ID)
+            .withClientSecret(API_CLIENT_SECRET)
+            .enable()
+  }
+
+  override fun onDetachedFromActivity() {
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+  }
+
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    activity = binding.activity;
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
   }
 }
