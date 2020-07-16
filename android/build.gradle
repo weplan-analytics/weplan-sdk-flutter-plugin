@@ -53,7 +53,9 @@ repositories {
 }
 
 dependencies {
+    def weplanSdkVersion = '2.2.2'
+
     implementation "com.android.support:multidex:1.0.3"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.cumberland.weplansdk:extended-pre:2.2.2.dev" // TODO put variable
+    implementation "com.cumberland.weplansdk:extended-pre:${weplanSdkVersion}.dev"
 }

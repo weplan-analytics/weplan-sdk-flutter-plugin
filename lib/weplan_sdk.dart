@@ -9,4 +9,8 @@ class WeplanSdk {
   static enableSdk() {
     _channel.invokeMethod('enableSdk');
   }
+
+  static disableSdk() {
+    _channel.invokeMethod('disableSdk');
+  }
 }

@@ -52,7 +52,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       enableSdk(context)
     }
     else if (call.method == "disableSdk") {
-      result.notImplemented() // TODO [manu] how to disable?
+      disableSDK(context)
     }
     else {
       result.notImplemented()
@@ -61,17 +61,6 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-  }
-
-  // TODO these are coverage+ IDs, use different? Put in build.config
-  val API_CLIENT_ID = "mLjamj5RzzNeHRMY9jTpstsKduTGiRrY69Wi55yDqwNBHYsPNwGKj3w6HedG1l1NvkuexTNPvT0j52thhtqnU1"
-  val API_CLIENT_SECRET = "Q0IRLVPdunhApbZGqSQBrvmNbCoOucaY7sRuwPuoBHnhFhrvbJoMfWOvqlfBKTCDWtOSGNuurcQVIBWmZBTnzF"
-
-  fun enableSdk(context: Context) {
-    WeplanSdk.withContext(context)
-            .withClientId(API_CLIENT_ID)
-            .withClientSecret(API_CLIENT_SECRET)
-            .enable()
   }
 
   override fun onDetachedFromActivity() {
@@ -85,5 +74,20 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
+  }
+
+  // TODO these are coverage+ IDs, use different? Put in build.config
+  val API_CLIENT_ID = "mLjamj5RzzNeHRMY9jTpstsKduTGiRrY69Wi55yDqwNBHYsPNwGKj3w6HedG1l1NvkuexTNPvT0j52thhtqnU1"
+  val API_CLIENT_SECRET = "Q0IRLVPdunhApbZGqSQBrvmNbCoOucaY7sRuwPuoBHnhFhrvbJoMfWOvqlfBKTCDWtOSGNuurcQVIBWmZBTnzF"
+
+  fun enableSdk(context: Context) {
+    WeplanSdk.withContext(context)
+            .withClientId(API_CLIENT_ID)
+            .withClientSecret(API_CLIENT_SECRET)
+            .enable()
+  }
+
+  fun disableSDK(context: Context) {
+    WeplanSdk.disable(context)
   }
 }
