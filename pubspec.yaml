@@ -30,8 +30,6 @@ flutter:
       android:
         package: com.cumberland.weplan_sdk
         pluginClass: WeplanSdkPlugin
-      ios:
-        pluginClass: WeplanSdkPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

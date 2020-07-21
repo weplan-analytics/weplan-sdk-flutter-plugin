@@ -1,14 +1,54 @@
+
 # weplan_sdk
+A library for using weplan's SDK.
+***Only supported on Android currently.
 
-Weplan SDK plugin
+### Usage
 
-## Getting Started
+**Prerequisite:** ACCESS_FINE_LOCATION must be granted.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Enable:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+    WeplanSdk.enableSdk(API_CLIENT_ID, API_CLIENT_SECRET);
+
+Disable:
+
+    WeplanSdk.disableSdk();
+
+
+## Installing: Use this package as a library
+### 1. Depend on it
+
+Add this to your package's pubspec.yaml file:
+
+
+    dependencies:
+      weplan_sdk:
+          git: git@github.com:weplan-analytics/weplan-sdk-flutter-plugin.git
+
+
+### 2. Install it
+
+You can install packages from the command line:
+
+with pub:
+
+
+    $ pub get
+
+
+with Flutter:
+
+
+    $ flutter pub get
+
+
+Alternatively, your editor might support pub get or flutter pub get. Check the docs for your editor to learn more.
+
+### 3. Import it
+
+Now in your Dart code, you can use:
+
+
+    import 'package:weplan_sdk/weplan_sdk.dart';
+

@@ -49,7 +49,13 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "enableSdk") {
-      enableSdk(context)
+      val clientId = call.argument<String>("clientId")
+      val clientSecret = call.argument<String>("clientSecret")
+      if (clientId == null || clientSecret == null) {
+        result.error("Incorrect parameters: null", null, null)
+        return
+      }
+      enableSdk(context, clientId, clientSecret)
     }
     else if (call.method == "disableSdk") {
       disableSDK(context)
@@ -76,14 +82,10 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onDetachedFromActivityForConfigChanges() {
   }
 
-  // TODO these are coverage+ IDs, use different? Put in build.config
-  val API_CLIENT_ID = "mLjamj5RzzNeHRMY9jTpstsKduTGiRrY69Wi55yDqwNBHYsPNwGKj3w6HedG1l1NvkuexTNPvT0j52thhtqnU1"
-  val API_CLIENT_SECRET = "Q0IRLVPdunhApbZGqSQBrvmNbCoOucaY7sRuwPuoBHnhFhrvbJoMfWOvqlfBKTCDWtOSGNuurcQVIBWmZBTnzF"
-
-  fun enableSdk(context: Context) {
+  fun enableSdk(context: Context, clientId: String, clientSecret: String) {
     WeplanSdk.withContext(context)
-            .withClientId(API_CLIENT_ID)
-            .withClientSecret(API_CLIENT_SECRET)
+            .withClientId(clientId)
+            .withClientSecret(clientSecret)
             .enable()
   }
 
