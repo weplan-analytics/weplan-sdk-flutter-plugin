@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:weplan_sdk/weplan_sdk.dart';
 
 class SdkPage extends StatelessWidget {
-  var API_CLIENT_ID = "fGthbeJ9tru8CDlQUqhKmLXDxwXWzQLxfSjwEeoJ1iWTS9dLNRfIF295LEFwV3dGx53FhY2Oj9m1SDWDoeDhcA";
-  var API_CLIENT_SECRET = "Youbgyj54SbfMjMcFSCWjAzSDKk8GzJc2VP7DTqWR8LhuqNhb29rOfDOb9GNS0FUhMFtBiKlNqmXVCjMjk3U8u";
+  var API_CLIENT_ID = "";
+  var API_CLIENT_SECRET = "";
 
   @override
   Widget build(BuildContext context) {
