@@ -52,7 +52,7 @@ Now in your Dart code, you can use:
 
 and enable the sdk
 
-    WeplanSdk.enable();
+    WeplanSdk.enable(); // Note that this will request location permission if it isn't granted
 
 ## FAQ
 ### Disable sdk
