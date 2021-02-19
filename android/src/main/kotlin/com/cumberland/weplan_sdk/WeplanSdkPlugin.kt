@@ -48,15 +48,17 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+
     if (call.method == "enableSdk") {
+      enableSdk(context)
+    } else if (call.method == "enableSdkParams") {
       val clientId = call.argument<String>("clientId")
       val clientSecret = call.argument<String>("clientSecret")
-      val startOnAppUpdate = call.argument<Boolean>("startOnAppUpdate")
       if (clientId == null || clientSecret == null) {
         result.error("Incorrect parameters: null", null, null)
         return
       }
-      enableSdk(activity, clientId, clientSecret, startOnAppUpdate ?: false)
+      enableSdkParams(activity, clientId, clientSecret)
     }
     else if (call.method == "disableSdk") {
       disableSDK(context)
@@ -83,8 +85,12 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onDetachedFromActivityForConfigChanges() {
   }
 
-  fun enableSdk(activity: Activity, clientId: String, clientSecret: String, startOnAppUpdate: Boolean?) {
-    Weplan.Sdk.enable(activity, clientId, clientSecret, startOnAppUpdate)
+  fun enableSdk(activity: Activity) {
+    Weplan.Sdk.enable(activity)
+  }
+
+  fun enableSdkParams(activity: Activity, clientId: String, clientSecret: String) {
+    Weplan.Sdk.enable(activity, clientId, clientSecret, false)
   }
 
   fun disableSDK(context: Context) {
