@@ -1,29 +1,15 @@
 
 # weplan_sdk
-A library for using weplan's SDK.
-***Only supported on Android currently.
+A library for using Weplan SDK.
+***Only supported on Android.
 
-### Usage
-
-**Prerequisite:** ACCESS_FINE_LOCATION must be granted.
-
-Enable:
-
-    WeplanSdk.enable(
-        API_CLIENT_ID, 
-        API_CLIENT_SECRET, 
-        true    // This will enable sdk on app updates to those devices with location permission previously granted
-    );
-
-Disable:
-
-    WeplanSdk.disable();
 
 
 ## Installing: Use this package as a library
-### 1. Depend on it
 
-Add this to your package's pubspec.yaml file:
+### 1. Install plugin
+
+Add this dependency to your package's pubspec.yaml file:
 
 
     dependencies:
@@ -31,28 +17,47 @@ Add this to your package's pubspec.yaml file:
           git: git@github.com:weplan-analytics/weplan-sdk-flutter-plugin.git
 
 
-### 2. Install it
-
-You can install packages from the command line:
-
-with pub:
-
-
-    $ pub get
-
-
-with Flutter:
-
+Install package from the command line:
 
     $ flutter pub get
 
 
-Alternatively, your editor might support pub get or flutter pub get. Check the docs for your editor to learn more.
+Copy this snippet at the end of *build.gradle* file from the app module of the Android application
 
-### 3. Import it
+```
+repositories {
+  maven { url 'https://maven.weplan-app.com/artifactory/public' }
+}
+
+android {
+  defaultConfig {
+    resValue "string", "WEPLAN_SDK_CLIENT_ID", "`YOUR_APP_CLIENT_ID"
+    resValue "string", "WEPLAN_SDK_CLIENT_SECRET", "YOUR_APP_CLIENT_SECRET"
+    resValue "bool", "WEPLAN_SDK_START_ON_APP_UPDATE", "true" // This will enable sdk on app updates to those devices with location permission previously granted
+  }
+  /* Add this only if you are using Android Gradle plugin 4.0.0 and higher on /android/build.gradle file
+  dependenciesInfo {
+    includeInApk = false
+    includeInBundle = false
+  }
+  */
+}
+```
+
+### 2. Use it
 
 Now in your Dart code, you can use:
 
-
     import 'package:weplan_sdk/weplan_sdk.dart';
+
+and enable the sdk
+
+    WeplanSdk.enable();
+
+## FAQ
+### Disable sdk
+
+The SDK can be disabled at any time with the following command:
+
+    WeplanSdk.disable();
 
