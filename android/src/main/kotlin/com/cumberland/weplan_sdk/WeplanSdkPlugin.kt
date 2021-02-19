@@ -50,7 +50,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
 
     if (call.method == "enableSdk") {
-      enableSdk(context)
+      enableSdk(activity)
     } else if (call.method == "enableSdkParams") {
       val clientId = call.argument<String>("clientId")
       val clientSecret = call.argument<String>("clientSecret")
