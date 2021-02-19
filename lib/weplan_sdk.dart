@@ -6,14 +6,15 @@ class WeplanSdk {
   static const MethodChannel _channel =
       const MethodChannel('weplan_sdk');
 
-  static enableSdk(String clientId, String clientSecret) {
+  static enable(String clientId, String clientSecret, bool startOnAppUpdate) {
     _channel.invokeMethod('enableSdk', <String, dynamic>{
       'clientId': clientId,
       'clientSecret': clientSecret,
+      'startOnAppUpdate': startOnAppUpdate
     });
   }
 
-  static disableSdk() {
+  static disable() {
     _channel.invokeMethod('disableSdk');
   }
 }

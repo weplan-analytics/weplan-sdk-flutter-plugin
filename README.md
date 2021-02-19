@@ -9,11 +9,15 @@ A library for using weplan's SDK.
 
 Enable:
 
-    WeplanSdk.enableSdk(API_CLIENT_ID, API_CLIENT_SECRET);
+    WeplanSdk.enable(
+        API_CLIENT_ID, 
+        API_CLIENT_SECRET, 
+        true    // This will enable sdk on app updates to those devices with location permission previously granted
+    );
 
 Disable:
 
-    WeplanSdk.disableSdk();
+    WeplanSdk.disable();
 
 
 ## Installing: Use this package as a library

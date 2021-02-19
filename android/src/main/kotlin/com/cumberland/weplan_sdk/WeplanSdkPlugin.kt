@@ -3,7 +3,7 @@ package com.cumberland.weplan_sdk
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull;
-import com.cumberland.weplansdk.WeplanSdk
+import com.cumberland.utils.init.Weplan;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -51,11 +51,12 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     if (call.method == "enableSdk") {
       val clientId = call.argument<String>("clientId")
       val clientSecret = call.argument<String>("clientSecret")
+      val startOnAppUpdate = call.argument<Boolean>("startOnAppUpdate")
       if (clientId == null || clientSecret == null) {
         result.error("Incorrect parameters: null", null, null)
         return
       }
-      enableSdk(context, clientId, clientSecret)
+      enableSdk(activity, clientId, clientSecret, startOnAppUpdate ?: false)
     }
     else if (call.method == "disableSdk") {
       disableSDK(context)
@@ -82,14 +83,11 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onDetachedFromActivityForConfigChanges() {
   }
 
-  fun enableSdk(context: Context, clientId: String, clientSecret: String) {
-    WeplanSdk.withContext(context)
-            .withClientId(clientId)
-            .withClientSecret(clientSecret)
-            .enable()
+  fun enableSdk(activity: Activity, clientId: String, clientSecret: String, startOnAppUpdate: Boolean?) {
+    Weplan.Sdk.enable(activity, clientId, clientSecret, startOnAppUpdate)
   }
 
   fun disableSDK(context: Context) {
-    WeplanSdk.disable(context)
+    Weplan.Sdk.disable(context)
   }
 }
