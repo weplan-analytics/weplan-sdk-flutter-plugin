@@ -1,8 +1,8 @@
 name: weplan_sdk
 description: Weplan SDK plugin
-version: 0.0.1
+version: 1.0.0
 author:
-homepage:
+homepage: https://github.com/weplan-analytics/weplan-sdk-flutter-plugin
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
