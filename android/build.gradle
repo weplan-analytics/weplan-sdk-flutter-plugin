@@ -41,12 +41,9 @@ android {
 repositories {
     jcenter()
     mavenCentral()
-    maven { url 'https://maven.weplan-app.com/artifactory/public' }
 }
 
 dependencies {
-
     implementation "com.android.support:multidex:1.0.3"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.cumberland.utils:sdk-init:+"
 }
