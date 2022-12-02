@@ -13,7 +13,7 @@ Add this dependency to your package's pubspec.yaml file:
 
     dependencies:
       weplan_sdk:
-          git: git@github.com:weplan-analytics/weplan-sdk-flutter-plugin.git
+          git: https://github.com/weplan-analytics/weplan-sdk-flutter-plugin.git
 
 
 Install package from the command line:
