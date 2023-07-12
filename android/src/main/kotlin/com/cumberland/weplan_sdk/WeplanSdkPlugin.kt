@@ -58,7 +58,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         result.error("Incorrect parameters: null", null, null)
         return
       }
-      enableSdk(activity, clientId, clientSecret)
+      enableSdk(activity, clientId, clientSecret, context)
     }
     else if(call.method == "showNotification"){
       showNotification(context)
@@ -88,8 +88,11 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onDetachedFromActivityForConfigChanges() {
   }
 
-  fun enableSdk(activity: Activity, clientId: String, clientSecret: String) {
-    WeplanSdk.enable(activity, clientId, clientSecret, true)
+  fun enableSdk(activity: Activity, clientId: String, clientSecret: String, context:Context) {
+    WeplanSdk.withContext(context)
+      .withClientId("wSVAJEhGlCNK7Qsv30vMzw3yRsm9Q4wlqkQx9237cmhJUdS2rLH1QgrYkN2mlZIZS6G9W4phANRF0mnV3Rn80Z")
+      .withClientSecret("gVDia0M2GaC5gGr3CNAWzWsTLqa0GCWQhkGVuhuERs8SYKpVHZLEWVusIkm15rNP0na46mpCuKHbllgVOl1wjf")
+      .enable()
   }
 
   fun showNotification(context: Context) {
