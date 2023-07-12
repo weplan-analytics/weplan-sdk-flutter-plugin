@@ -5,7 +5,6 @@ import android.content.Context
 import androidx.annotation.NonNull;
 import com.cumberland.weplansdk.WeplanSdk;
 import com.cumberland.sdk.core.domain.notification.controller.SdkNotificationKind;
-import com.cumberland.weplansdk.WeplanSdkInit;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -96,7 +95,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   fun showNotification(context: Context) {
-    WeplanSdk.NotificationController(context).setNotificationKind(WeplanSdkInit.getDefaultNotificationKind())
+    WeplanSdk.NotificationController(context).setNotificationKind(SdkNotificationKind.Background)
   }
 
   fun disableSDK(context: Context) {
