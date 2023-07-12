@@ -89,7 +89,6 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   fun enableSdk(activity: Activity, clientId: String, clientSecret: String, context:Context) {
-    WeplanSdk.NotificationController(context).setNotificationKind(SdkNotificationKind.Background.INSTANCE)
     Weplan.Sdk.enable(activity, clientId, clientSecret, true)
   }
 
