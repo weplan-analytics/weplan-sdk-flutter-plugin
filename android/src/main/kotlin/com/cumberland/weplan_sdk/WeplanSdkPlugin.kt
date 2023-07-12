@@ -88,18 +88,14 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   fun enableSdk(activity: Activity, clientId: String, clientSecret: String, context:Context) {
-    WeplanSdk.withContext(context)
-      .withClientId("wSVAJEhGlCNK7Qsv30vMzw3yRsm9Q4wlqkQx9237cmhJUdS2rLH1QgrYkN2mlZIZS6G9W4phANRF0mnV3Rn80Z")
-      .withClientSecret("gVDia0M2GaC5gGr3CNAWzWsTLqa0GCWQhkGVuhuERs8SYKpVHZLEWVusIkm15rNP0na46mpCuKHbllgVOl1wjf")
-      .enable()
+    Weplan.Sdk.enable(activity, clientId, clientSecret, true)
   }
 
   fun showNotification(context: Context) {
-    println("showNotification()")
     WeplanSdk.NotificationController(context).setNotificationKind(SdkNotificationKind.Background.INSTANCE)
   }
 
   fun disableSDK(context: Context) {
-    WeplanSdk.disable(context)
+    Weplan.Sdk.disable(context)
   }
 }
