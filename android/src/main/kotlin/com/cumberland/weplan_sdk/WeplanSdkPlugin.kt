@@ -3,8 +3,8 @@ package com.cumberland.weplan_sdk
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull;
-import com.cumberland.weplansdk.WeplanSdkInit;
-import com.cumberland.weplansdk.WeplanSdk.NotificationController;
+import com.cumberland.utils.init.Weplan;
+import com.cumberland.utils.init.Weplan.NotificationController;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
