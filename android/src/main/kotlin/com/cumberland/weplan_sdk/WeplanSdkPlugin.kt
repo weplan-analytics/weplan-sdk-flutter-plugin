@@ -60,7 +60,6 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       enableSdk(activity, clientId, clientSecret, context)
     }
     else if(call.method == "showNotification"){
-      println("showNotification()")
       showNotification(context)
     }
     else if (call.method == "disableSdk") {
@@ -96,6 +95,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   fun showNotification(context: Context) {
+    println("showNotification()")
     WeplanSdk.NotificationController(context).setNotificationKind(SdkNotificationKind.Background.INSTANCE)
   }
 
