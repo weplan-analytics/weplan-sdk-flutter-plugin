@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull;
 import com.cumberland.utils.init.Weplan;
-import com.cumberland.sdk.core.domain.notification.controller.SdkNotificationController;
 import com.cumberland.weplansdk.WeplanSdk;
 import com.cumberland.sdk.core.domain.notification.controller.SdkNotificationKind;
 
