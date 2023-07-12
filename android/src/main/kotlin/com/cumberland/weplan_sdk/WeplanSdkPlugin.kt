@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull;
 import com.cumberland.utils.init.Weplan;
+import com.cumberland.weplansdk.WeplanSdk.NotificationController;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -87,7 +88,7 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     Weplan.Sdk.enable(activity, clientId, clientSecret, true)
   }
 
-  fun showNotification() {
+  fun showNotification(context: Context) {
     Weplan.Sdk.NotificationController(context).setNotificationKind(WeplanSdkInit.INSTANCE.getDefaultNotificationKind())
   }
 
