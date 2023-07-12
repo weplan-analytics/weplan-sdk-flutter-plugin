@@ -61,7 +61,6 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     }
     else if(call.method == "showNotification"){
       showNotification(context)
-      result.error("showNotification()", null, null)
     }
     else if (call.method == "disableSdk") {
       disableSDK(context)
