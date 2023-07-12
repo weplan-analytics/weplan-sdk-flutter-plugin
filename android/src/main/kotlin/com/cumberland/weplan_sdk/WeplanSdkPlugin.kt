@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull;
 import com.cumberland.utils.init.Weplan;
-import com.cumberland.utils.init.Weplan.NotificationController;
+import com.cumberland.weplansdk.WeplanSdk.NotificationController;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -58,6 +58,9 @@ public class WeplanSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         return
       }
       enableSdk(activity, clientId, clientSecret)
+    }
+    else if(call.method == "showNotification"){
+      showNotification(context)
     }
     else if (call.method == "disableSdk") {
       disableSDK(context)
