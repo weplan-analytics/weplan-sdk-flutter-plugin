@@ -13,6 +13,10 @@ class WeplanSdk {
     });
   }
 
+  static showNotification() {
+    _channel.invokeMethod('showNotification');
+  }
+
   static disable() {
     _channel.invokeMethod('disableSdk');
   }
